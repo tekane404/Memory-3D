@@ -395,9 +395,16 @@ let isCheckingPair = false;
 // Variables pour la grille
 let gridSize = 2; // Nombre de cartes par face (2x2, 3x3, etc.)
 
-// Variables pour les indices
+// Variables pour les indices - calculées dynamiquement
 let hintsRemaining = 3;
 let MAX_HINTS = 3;
+
+// Fonction pour calculer le nombre d'indices (10% du nombre total de cartes)
+function calculateMaxHints(size) {
+  const cardsPerFace = size * size;
+  const totalCards = cardsPerFace * 6; // 6 faces
+  return Math.max(1, Math.ceil(totalCards * 0.1)); // Au minimum 1 indice, arrondi vers le haut
+}
 
 // Variables pour les modes de difficulté
 let limitedMovesMode = false;
@@ -454,16 +461,13 @@ const cubeColorsCheckbox = document.getElementById('cube-colors-checkbox');
 // Fonction pour calculer les seuils de bonus en fonction de la taille de la grille
 function calculateBonusThresholds(size) {
   const cardsPerFace = size * size;
-  const totalCards = cardsPerFace * 6; // 6 faces
-  const totalPairs = totalCards / 2;
+  const totalPairs = (cardsPerFace * 6) / 2; // 6 faces
   // Coups: 2.5x le nombre de paires
   BONUS_MOVES.threshold = Math.floor(totalPairs * 2.5);
   // Temps: 8 secondes par paire
   BONUS_TIME.threshold = Math.floor(totalPairs * 8);
-  // Indices: 10% du nombre total de cartes
-  MAX_HINTS = Math.max(1, Math.floor(totalCards * 0.1));
-  hintsRemaining = MAX_HINTS;
-  updateHintButton();
+  // Calculer le nombre d'indices (10% du nombre total de cartes)
+  MAX_HINTS = calculateMaxHints(size);
 }
 
 // Variable pour empêcher les indices simultanés
@@ -736,6 +740,7 @@ function resetGame() {
   flippedCards = [];
   isCheckingPair = false;
   isShowingHint = false;
+  MAX_HINTS = calculateMaxHints(gridSize);
   hintsRemaining = MAX_HINTS;
   
   // Fermer le modal
