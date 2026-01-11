@@ -1,8 +1,6 @@
 import './style.css'
-
-// Importation de Three.js via CDN
-const THREE = window.THREE;
-const { OrbitControls } = window;
+import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+import { OrbitControls } from 'https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js';
 
 // Scène
 const scene = new THREE.Scene();
