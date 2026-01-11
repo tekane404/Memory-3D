@@ -9,5 +9,11 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
+    target: 'esnext',
+    minify: 'esbuild',
+    cssCodeSplit: false,
+  },
+  server: {
+    middlewareMode: false,
   }
 })
