@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>memory-3d</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    
+    <div id="game-over-modal" class="modal hidden">
+      <div class="modal-content">
+        <h2>Partie terminée!</h2>
+        <div class="final-score">
+          <div class="score-display-item">
+            <span class="score-label">Score</span>
+            <span class="score-value" id="final-score-display">0</span>
+          </div>
+          <div class="score-display-item">
+            <span class="score-label">Coups</span>
+            <span class="score-value" id="final-moves-display">0</span>
+          </div>
+          <div class="score-display-item">
+            <span class="score-label">Temps</span>
+            <span class="score-value" id="final-time-display">0s</span>
+          </div>
+        </div>
+        <div class="bonus-breakdown">
+          <div class="bonus-item-breakdown">
+            <span>Bonus coups (+5):</span>
+            <span id="bonus-moves-result">-</span>
+          </div>
+          <div class="bonus-item-breakdown">
+            <span>Bonus temps (+5):</span>
+            <span id="bonus-time-result">-</span>
+          </div>
+          <div class="bonus-item-breakdown difficulty-bonus">
+            <span>Bonus difficulté :</span>
+            <span id="bonus-difficulty-result">-</span>
+          </div>
+          <div class="bonus-item-breakdown" style="border-top: 1px solid #ccc; margin-top: 8px; padding-top: 8px;">
+            <span>Bonus mode gris (+10):</span>
+            <span id="bonus-gray-result">-</span>
+          </div>
+        </div>
+        <div class="modal-buttons">
+          <button id="continue-btn" class="btn-primary">Continuer (Difficulté +)</button>
+          <button id="new-game-btn" class="btn-secondary">Nouvelle partie</button>
+        </div>
+      </div>
+    </div>
+    
+    <div id="score-panel">
+      <div class="score-container">
+        <div class="score-item">
+          <span class="score-label">Score</span>
+          <span class="score-value" id="score-display">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Coups</span>
+          <span class="score-value" id="moves-display">0</span>
+        </div>
+        <div class="score-item">
+          <span class="score-label">Temps</span>
+          <span class="score-value" id="time-display">0s</span>
+        </div>
+        
+        <div class="bonus-conditions">
+          <div class="condition-item">
+            <span class="condition-label">Bonus coups:</span>
+            <span class="condition-value" id="moves-condition">0 / 20</span>
+          </div>
+          <div class="condition-item">
+            <span class="condition-label">Bonus temps:</span>
+            <span class="condition-value" id="time-condition">0 / 60s</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="gui-panel">
+      <div class="gui-container">
+        <h3>Paramètres</h3>
+        
+        <div class="gui-control">
+          <label for="grid-size-slider">Cartes par face: <span id="grid-size-value">2</span>x<span id="grid-size-value-copy">2</span></label>
+          <input type="range" id="grid-size-slider" min="2" max="5" value="2" />
+        </div>
+
+        <button id="hint-btn">Indice</button>
+        <div id="hint-timer-display" style="text-align: center; margin-top: 5px; font-size: 14px; color: #999;">-</div>
+        <button id="reset-btn">Nouvelle partie</button>
+
+        <div class="difficulty-options">
+          <h4>Modes de difficulté</h4>
+          <label class="checkbox-label">
+            <input type="checkbox" id="limited-moves-checkbox" />
+            <span>Coups limités | +10 points</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="limited-time-checkbox" />
+            <span>Temps limité | +10 points</span>
+          </label>
+          <label class="checkbox-label">
+            <input type="checkbox" id="cube-colors-checkbox" checked />
+            <span>Couleur du cube | Gris = +10 bonus</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
