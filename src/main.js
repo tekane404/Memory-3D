@@ -1,14 +1,6 @@
-import * as THREE from "https://unpkg.com/three@0.160.0/build/three.module.js";
-import { OrbitControls } from "https://unpkg.com/three@0.160.0/examples/jsm/controls/OrbitControls.js";
-
-// Charger le CSS dynamiquement
-fetch('./src/style.css')
-  .then(response => response.text())
-  .then(css => {
-    const style = document.getElementById('main-style');
-    style.textContent = css;
-  })
-  .catch(err => console.error('Erreur chargement CSS:', err));
+import './style.css'
+import * as THREE from 'three';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 // Scène
 const scene = new THREE.Scene();
