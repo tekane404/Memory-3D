@@ -1,6 +1,6 @@
-import './style.css'
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+// Three.js et OrbitControls sont chargés via CDN dans index.html
+// Ils sont disponibles globalement comme THREE et THREE.OrbitControls
+
 
 // Scène
 const scene = new THREE.Scene();
