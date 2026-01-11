@@ -397,7 +397,7 @@ let gridSize = 2; // Nombre de cartes par face (2x2, 3x3, etc.)
 
 // Variables pour les indices
 let hintsRemaining = 3;
-const MAX_HINTS = 3;
+let MAX_HINTS = 3;
 
 // Variables pour les modes de difficulté
 let limitedMovesMode = false;
@@ -454,11 +454,16 @@ const cubeColorsCheckbox = document.getElementById('cube-colors-checkbox');
 // Fonction pour calculer les seuils de bonus en fonction de la taille de la grille
 function calculateBonusThresholds(size) {
   const cardsPerFace = size * size;
-  const totalPairs = (cardsPerFace * 6) / 2; // 6 faces
+  const totalCards = cardsPerFace * 6; // 6 faces
+  const totalPairs = totalCards / 2;
   // Coups: 2.5x le nombre de paires
   BONUS_MOVES.threshold = Math.floor(totalPairs * 2.5);
   // Temps: 8 secondes par paire
   BONUS_TIME.threshold = Math.floor(totalPairs * 8);
+  // Indices: 10% du nombre total de cartes
+  MAX_HINTS = Math.max(1, Math.floor(totalCards * 0.1));
+  hintsRemaining = MAX_HINTS;
+  updateHintButton();
 }
 
 // Variable pour empêcher les indices simultanés
