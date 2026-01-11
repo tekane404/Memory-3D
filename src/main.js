@@ -1,6 +1,8 @@
 import './style.css'
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
+
+// Importation de Three.js via CDN
+const THREE = window.THREE;
+const { OrbitControls } = window;
 
 // Scène
 const scene = new THREE.Scene();
