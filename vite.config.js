@@ -9,15 +9,6 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     emptyOutDir: true,
-    rollupOptions: {
-      output: {
-        manualChunks: {
-          'three': ['three']
-        }
-      }
-    }
-  },
-  optimize: {
-    exclude: ['three']
+    target: 'esnext'
   }
 })
