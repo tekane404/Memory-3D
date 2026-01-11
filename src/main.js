@@ -1,5 +1,7 @@
 // Three.js et OrbitControls sont chargés via CDN dans index.html
 // Ils sont disponibles globalement comme THREE et THREE.OrbitControls
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 
 // Scène
@@ -21,7 +23,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 // OrbitControls (APRES camera + renderer)
-const controls = new THREE.OrbitControls(camera, renderer.domElement);
+const controls = new OrbitControls(camera, renderer.domElement);
 controls.enableDamping = true;
 controls.target.set(0, 0, 0);
 controls.enablePan = false; // Désactiver le pan (déplacement)
